@@ -15,8 +15,8 @@ let s3 = new aws.S3({
 });
 
 
-const dbUrl = "mongodb://localhost:27017/perez_perez"; // Mongo Local
-//const dbUrl = = s3.config.DbConnect; // MongoDb Atlas
+//const dbUrl = "mongodb://localhost:27017/perez_perez"; // Mongo Local
+const dbUrl = = s3.config.DbConnect; // MongoDb Atlas
 
 
 mongoose

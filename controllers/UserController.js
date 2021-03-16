@@ -3,18 +3,41 @@ import bcrypt from "bcryptjs";
 import token from "../services/token";
 
 export default {
-  add: async (req, res, next) => {
-    try {
-      req.body.password = await bcrypt.hash(req.body.password, 10);
-      const reg = await models.User.create(req.body);
-      res.status(200).json(reg);
-    } catch (e) {
-      res.status(500).send({
-        message: "Ocurrió un error",
-      });
-      next(e);
-    }
+
+	  add: async (req, res, next) => {
+			try {
+				req.body.password = await bcrypt.hash(req.body.password, 10);
+				const reg = await models.User.create(req.body);
+				res.status(200).json(reg);
+			} catch (e) {
+				res.status(500).send({
+					message: "Ocurrió un error",
+				});
+				next(e);
+			}
   },
+
+  register: async (req, res, next) => {
+		const reg0 = await models.User.countDocuments();
+
+		if (reg0 == 0){
+			try {
+				req.body.password = await bcrypt.hash(req.body.password, 10);
+				const reg = await models.User.create(req.body);
+				res.status(200).json(reg);
+			} catch (e) {
+				res.status(500).send({
+					message: "Ocurrió un error",
+				});
+				next(e);
+			}
+		} else {
+			res.status(500).send({
+				message: "Sistema instalado, operación no permitida",
+			});
+		}
+  },
+
   query: async (req, res, next) => {
     try {
       const reg = await models.User.findOne({ _id: req.query._id });

@@ -16,7 +16,7 @@ let s3 = new aws.S3({
 
 
 //const dbUrl = "mongodb://localhost:27017/perez_perez"; // Mongo Local
-const dbUrl = = s3.config.DbConnect; // MongoDb Atlas
+const dbUrl = s3.config.DbConnect; // MongoDb Atlas
 
 
 mongoose
@@ -40,7 +40,7 @@ app.use("/api", router);
 const history = require("connect-history-api-fallback");
 app.use(history());
 
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 3004);
 app.listen(app.get("port"), () => {
   console.log("App listening on port " + app.get("port"));
 });

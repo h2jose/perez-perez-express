@@ -4,20 +4,22 @@ import token from "../services/token";
 
 export default {
 
-	  add: async (req, res, next) => {
-			try {
-				req.body.password = await bcrypt.hash(req.body.password, 10);
-				const reg = await models.User.create(req.body);
-				res.status(200).json(reg);
-			} catch (e) {
-				res.status(500).send({
-					message: "Ocurrió un error",
-				});
-				next(e);
-			}
+	add: async (req, res, next) => {
+		
+		try {
+			req.body.password = await bcrypt.hash(req.body.password, 10);
+			const reg = await models.User.create(req.body);
+			res.status(200).json(reg);
+		} catch (e) {
+			res.status(500).send({
+				message: "Ocurrió un error",
+			});
+			next(e);
+		}
   },
 
   register: async (req, res, next) => {
+		
 		const reg0 = await models.User.countDocuments();
 
 		if (reg0 == 0){
@@ -71,8 +73,7 @@ export default {
   login: async (req, res, next) => {
     try {
       let user = await models.User.findOne({
-        email: req.body.email,
-        active: true,
+        email: req.body.email
       });
       if (user) {
         let match = await bcrypt.compare(req.body.password, user.password);

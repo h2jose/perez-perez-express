@@ -5,7 +5,8 @@ const router = routerx();
 
 router.post('/add', auth.verifyAdministrator, carController.add);
 router.get('/query', auth.verifyAdministrator, carController.query);
-router.get('/list', auth.verifyAdministrator, carController.list);
+router.get('/list', carController.list);
+//router.get('/list', auth.verifyAdministrator, carController.list);
 router.put('/update', auth.verifyAdministrator, carController.update);
 router.post('/remove', auth.verifyAdministrator, carController.remove);
 

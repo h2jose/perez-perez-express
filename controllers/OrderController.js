@@ -36,7 +36,6 @@ export default {
 		try {
 			const reg = await models.Order.find({})
 				.sort({'createdAt': -1})
-				.populate('customer',{name:1})
 				.populate('car',{number:1});
 			res.status(200).json(reg);
 		} catch (e) {
@@ -51,11 +50,9 @@ export default {
 			const reg = await models.Order.findByIdAndUpdate(
 				{ _id: req.body._id }, 
 				{ 
-					customer: req.body.customer, 
 					car: req.body.car, 
 					notes: req.body.notes, 
 					status: req.body.status, 
-					paid: req.body.paid, 
 				});
 			res.status(200).json(reg);
 		} catch (e) {

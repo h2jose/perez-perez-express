@@ -30,7 +30,7 @@ export default {
   decode: async (token) => {
     try {
       const { _id } = await jwt.verify(token, "hyuIokT789056Hui05432");
-      const user = await models.User.findOne({ _id, active: true });
+      const user = await models.User.findOne({ _id });
       if (user) {
         return user;
       } else {

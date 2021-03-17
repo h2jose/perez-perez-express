@@ -2,9 +2,9 @@ import tokenService from "../services/token";
 export default {
 
   verifyAdministrator: async (req, res, next) => {
-    if (!req.headers.token) {
-      return res.status(404).send({
-        message: "No token",
+		if (!req.headers.token) {
+			return res.status(404).send({
+				message: "No token",
       });
     }
     const response = await tokenService.decode(req.headers.token);

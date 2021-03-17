@@ -40,7 +40,7 @@ app.use("/api", router);
 const history = require("connect-history-api-fallback");
 app.use(history());
 
-app.set("port", process.env.PORT || 3004);
+app.set("port", process.env.PORT || 3000);
 app.listen(app.get("port"), () => {
   console.log("App listening on port " + app.get("port"));
 });

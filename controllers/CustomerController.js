@@ -35,18 +35,7 @@ export default {
   list: async (req, res, next) => {
     try {
       let value = req.query.value;
-      const reg = await models.Customer.find({})
-        .select({
-          _id: 1,
-          dni: 1,
-          name: 1,
-          email: 1,
-          address: 1,
-          phone: 1,
-          notes: 1,
-          active: 1,
-        })
-        .sort({ createdAt: -1 });
+      const reg = await models.Customer.find({});
       res.status(200).json(reg);
     } catch (e) {
       res.status(500).send({
@@ -80,6 +69,20 @@ export default {
   remove: async (req, res, next) => {
     try {
       const reg = await models.Customer.findByIdAndDelete({ _id: req.body._id });
+      res.status(200).json(reg);
+    } catch (e) {
+      res.status(500).send({
+        message: "Ocurrió un error",
+      });
+      next(e);
+    }
+  },
+	toggle: async (req, res, next) => {
+    try {
+      const reg = await models.Customer.findByIdAndUpdate(
+        { _id: req.body._id },
+        { active: req.body.active }
+      );
       res.status(200).json(reg);
     } catch (e) {
       res.status(500).send({

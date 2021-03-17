@@ -8,5 +8,6 @@ router.get('/query', auth.verifyAdministrator, customerController.query);
 router.get('/list', auth.verifyAdministrator, customerController.list);
 router.put('/update', auth.verifyAdministrator, customerController.update);
 router.post('/remove', auth.verifyAdministrator, customerController.remove);
+router.put('/toggle', auth.verifyAdministrator, customerController.toggle);
 
 export default router;

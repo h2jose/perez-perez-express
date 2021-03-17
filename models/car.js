@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const CollectionSchema = new Schema({
+const CarSchema = new Schema({
 	customer: { type: Schema.ObjectId, ref: 'customer' },
 	number: { type: String, maxlength: 50, unique: true, required: true },
 	marca: { type: String, maxlength: 100, required: true },
@@ -9,5 +9,5 @@ const CollectionSchema = new Schema({
 	createdAt: { type: Date, default: Date.now },
 });
 
-const collection = mongoose.model("collection", CollectionSchema);
-export default collection;
+const car = mongoose.model("car", CarSchema);
+export default car;

@@ -31,7 +31,8 @@ export default {
 	list: async (req, res, next) => {
 		try {
 			let valor = req.query.valor;
-			const reg = await models.Car.find({});
+			const reg = await models.Car.find({})
+			.populate('customer',{name:1});
 			res.status(200).json(reg);
 		} catch (e) {
 			res.status(500).send({

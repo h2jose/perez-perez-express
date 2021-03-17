@@ -6,7 +6,8 @@ const router = routerx();
 
 router.post('/add',    auth.verifyAdministrator, orderController.add);
 router.get('/query',   auth.verifyAdministrator, orderController.query);
-router.get('/list',    auth.verifyAdministrator, orderController.list);
+// router.get('/list',    auth.verifyAdministrator, orderController.list);
+router.get('/list',    orderController.list);
 router.put('/update',  auth.verifyAdministrator, orderController.update);
 router.post('/remove', auth.verifyAdministrator, orderController.remove);
 
